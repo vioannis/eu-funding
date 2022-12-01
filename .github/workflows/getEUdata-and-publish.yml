@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: getEUdata-and-publish
 
 # Controls when the workflow will run
 on:
@@ -21,12 +21,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
       - name: Every time
         run: echo "This step will always run"
+      
+      #Checks repository and lists files in the repository
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
