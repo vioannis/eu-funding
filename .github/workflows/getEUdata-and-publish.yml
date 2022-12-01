@@ -41,14 +41,14 @@ jobs:
           R -e 'install.packages("rvest")'
       # Run R script (change name of script)
       - name: Scrape
-        run: Rscript get_funding.R
+        run: Rscript test_getEUdata.R
       
       # Add new files in data folder, push
       - name: Commit files
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add --all
+          git add data/*
           git commit -am "add data"
           git push 
       
