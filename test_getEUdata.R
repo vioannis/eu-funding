@@ -13,4 +13,4 @@ data <- fromJSON(rawToChar(res$content))
 
 cat(sprintf("last update on %s.", as.character(Sys.Date())))
 
-write.csv(data, paste0("/data/", format(Sys.time(), "%d-%b-%Y"), ".csv") )
+write.csv(data, paste0("/", format(Sys.time(), "%d-%b-%Y"), ".csv") )
