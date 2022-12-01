@@ -41,7 +41,7 @@ jobs:
           R -e 'install.packages("rvest")'
       # Run R script (change name of script)
       - name: Scrape
-        run: Rscript sitemap_scraping.R
+        run: Rscript get_funding.R
       
       # Add new files in data folder, push
       - name: Commit files
