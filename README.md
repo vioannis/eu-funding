@@ -3,8 +3,7 @@
 This project aims at collecting, organizing and visualizing European Union funding data.
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r echo=FALSE,message=FALSE,warning=FALSE}
 rm(list = ls())
 options(scipen=999)
 
@@ -30,13 +29,6 @@ period_average <- aggregate(modelled_annual_eu_payments~programming_period,data_
 
 funding_average_period <- aggregate(modelled_annual_eu_payments~country+programming_period,data_funding,sum)
 
-```
-
-##Plots
-
-PLOTS:
-
-```{r pressure, echo=FALSE,message=FALSE,warning=FALSE}
 
 ggplot(funding_average, aes(reorder(country,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
   coord_flip() +
@@ -94,3 +86,4 @@ ggplot(data = data) +
 
 ```
 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
