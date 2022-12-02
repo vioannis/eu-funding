@@ -1,5 +1,5 @@
 ---
-title: "report_test"
+title: "Report"
 output: html_document
 date: "2022-12-02"
 ---
@@ -34,16 +34,13 @@ period_average <- aggregate(modelled_annual_eu_payments~programming_period,data_
 
 funding_average_period <- aggregate(modelled_annual_eu_payments~country+programming_period,data_funding,sum)
 
-
-
-
 ```
 
 ##Plots
 
 PLOTS:
 
-```{r pressure, echo=FALSE,message=FALSE}
+```{r pressure, echo=FALSE,message=FALSE,warning=FALSE}
 
 ggplot(funding_average, aes(reorder(country,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
   coord_flip() +
@@ -79,21 +76,8 @@ ggplot(funding_average_period[funding_average_period$programming_period=="2014-2
   theme_minimal()
 
 
-
-# Disposable income of private households by NUTS 2 regions at 1:60mln res
-#data_eurostat <- get_eurostat("demo_pjan") %>%
-#  dplyr::filter(cat == "TOTAL")%>%
-  # classifying the values the variable
-#> Reading cache file /tmp/RtmpnlYDei/r_cache2/tgs00026_raw_code_FF.rds
-#> Table  tgs00026  read from cache file:  /tmp/RtmpnlYDei/r_cache2/tgs00026_raw_code_FF.rds
-
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2021)
-#> Object cached at /tmp/RtmpnlYDei/r_cache2/sf60220214326.RData
-#> sf at resolution 1: 60  cached at:  /tmp/RtmpnlYDei/r_cache2/sf60220214326.RData
-#> Warning in get_eurostat_geospatial(resolution = "60", nuts_level = "2", :
-#> Default of 'make_valid' for 'output_class="sf"' will be changed in the future
-#> (see function details).
 
 # merge with attribute data with geodata
 data <- merge(data_geo,funding_average, by.x="NUTS_ID",by.y="country")
@@ -111,8 +95,6 @@ ggplot(data = data) +
   theme_light() +
   theme(legend.position = c(.8, .8)) +
   coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
-
-
 
 ```
 
