@@ -40,14 +40,20 @@ jobs:
       - name: Install packages
         run: |
           R -e 'install.packages("rvest")'
-      # Run R script (change name of script)
-      - name: RunTest GetEU
-        run: Rscript test_getEUdata.R
+      # Run R script 
+      # chmod: ubuntu command, makes script executable
+      - name: Run script to knit rmd file
+        run: |
+          chmod +x knit_readme_eufunding.R 
+          knit_readme_eufunding.R
+      # List all files in directory (l-longform  a-all h-human readable)     
+      - name: List all file  
+      - run: ls -lah
       
-      # Add new files in data folder, push
+      # Commit files
       - name: Commit files
         run: |
-          git config --global --add safe.directory /__w/h4sci-gha-demo/h4sci-gha-demo
+          git config --global --add safe.directory /vioannis/h4sci-gha-demo
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add data/*
