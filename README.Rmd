@@ -74,24 +74,24 @@ ggplot(funding_average_period[funding_average_period$programming_period=="2014-2
 
 
 # Download geospatial data from GISCO
-data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2021)
+#data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2021)
 
 # merge with attribute data with geodata
-data <- merge(data_geo,funding_average, by.x="NUTS_ID",by.y="country")
-data$cat <- cut_to_classes(data$modelled_annual_eu_payments)
+#data <- merge(data_geo,funding_average, by.x="NUTS_ID",by.y="country")
+#data$cat <- cut_to_classes(data$modelled_annual_eu_payments)
 
 ## Joining, by = "geo"
-ggplot(data = data) +
-  geom_sf(aes(fill = cat), size = 0.1) +
-  scale_fill_brewer(palette = "Oranges") +
-  guides(fill = guide_legend(reverse = TRUE, title = "billion euro")) +
-  labs(
-    title = "Total fiscal transfers",
-    caption = ""
-  ) +
-  theme_light() +
-  theme() +
-  coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
+#ggplot(data = data) +
+#  geom_sf(aes(fill = cat), size = 0.1) +
+#  scale_fill_brewer(palette = "Oranges") +
+#  guides(fill = guide_legend(reverse = TRUE, title = "billion euro")) +
+#  labs(
+#    title = "Total fiscal transfers",
+#    caption = ""
+#  ) +
+#  theme_light() +
+#  theme() +
+#  coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
 
 ```
 
