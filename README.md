@@ -6,20 +6,21 @@ This project aims at collecting, organizing and visualizing European Union fundi
 ```{r echo=FALSE,message=FALSE,warning=FALSE}
 rm(list = ls())
 options(scipen=999)
-
-library("httr")
-library("RSocrata")
-library("jsonlite")
-library("ggplot2")
-library("dplyr")
-library("RSocrata")
-library("tidyverse")
-#library("sf")
-library("eurostat")
-library("geometry")
+install.packages(c("httr", "jsonlite"))
+require("knitr")
+require("httr")
+require("RSocrata")
+require("jsonlite")
+require("ggplot2")
+require("dplyr")
+require("RSocrata")
+require("tidyverse")
+require("sf")
+require("eurostat")
+require("geometry")
 
 ###### get funding data from EU commission
-res <- GET("https://cohesiondata.ec.europa.eu/resource/tc55-7ysv.json?$limit=80000")
+res <- GET("https://cohesiondata.ec.europa.eu/resource/tc55-7ysv.json?$limit=40000")
 data_funding <- fromJSON(rawToChar(res$content))
 data_funding$modelled_annual_eu_payments <- as.numeric(data_funding$modelled_annual_eu_payments)/1000000000
 ###### aggregate 
