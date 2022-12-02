@@ -41,7 +41,7 @@ jobs:
       - name: Run script to knit rmd file
         run: |
           chmod +x knit_readme_eufunding.R 
-          knit_readme_eufunding.R
+          ./knit_readme_eufunding.R
       # List all files in directory (l-longform  a-all h-human readable)     
       - name: List all file  
         run: ls -lah  
