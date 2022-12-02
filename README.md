@@ -1,7 +1,8 @@
+\##Plots
 
-# eu-funding
-This project aims at collecting, organizing and visualizing European Union funding data.
+PLOTS:
 
+<<<<<<< HEAD
 
 ```{r echo=FALSE,message=FALSE,warning=FALSE}
 rm(list = ls())
@@ -88,3 +89,6 @@ data$cat <- cut_to_classes(data$modelled_annual_eu_payments)
 ```
 
 ![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+=======
+![](README_files/figure-markdown_strict/pressure-1.png)![](README_files/figure-markdown_strict/pressure-2.png)![](README_files/figure-markdown_strict/pressure-3.png)![](README_files/figure-markdown_strict/pressure-4.png)
+>>>>>>> f9b7acd307783f20926888ffb58a72f0bfd8ce7d
