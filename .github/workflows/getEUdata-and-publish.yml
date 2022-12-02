@@ -35,7 +35,6 @@ jobs:
       # Set-up R
       - name: Install packages
         run: |
-          R -e 'install.packages("rvest")'
           Rscript -e 'install.packages("rmarkdown")'
           Rscript -e 'install.packages("eurostat")'
           Rscript -e 'install.packages("httr")'
@@ -48,11 +47,6 @@ jobs:
           Rscript -e 'install.packages("rnaturalearthdata")'
           Rscript -e 'install.packages("geometry")'
       # Run R script 
-      # chmod: ubuntu command, makes script executable
-      #- name: Run script to knit rmd file
-      #  run: |
-      #    chmod +x knit_readme_eufunding.R 
-      #    ./knit_readme_eufunding.R
       - run: Rscript -e 'rmarkdown::render("README.Rmd", output_format = "md_document")'
       # List all files in directory (l-longform  a-all h-human readable)     
       - name: List all file  
