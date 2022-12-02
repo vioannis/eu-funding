@@ -29,7 +29,7 @@ data <- fromJSON(rawToChar(res$content))
 
 head(data)
 
-cat(sprintf("last update on %s.", as.character(Sys.Date()))
+cat(sprintf("last update on %s.", as.character(Sys.Date())))
 ```
 
 
