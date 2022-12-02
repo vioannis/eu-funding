@@ -16,7 +16,7 @@ library("ggplot2")
 library("dplyr")
 library("RSocrata")
 library("tidyverse")
-library("sf")
+#library("sf")
 library("eurostat")
 library("geometry")
 
