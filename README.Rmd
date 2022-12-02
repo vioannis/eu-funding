@@ -21,13 +21,10 @@ require(sf)
 require(rnaturalearth)
 require(rnaturalearthdata)
 require(eurostat)
-<<<<<<< HEAD
 require(ggplot2)
 require(geometry)
-=======
-library(ggplot2)
-library(geometry)
->>>>>>> 6a8b08ddb880f11dfd79218b0fdffe75287c7488
+require(ggplot2)
+require(geometry)
 ###### get funding data from EU commission
 res <- GET("https://cohesiondata.ec.europa.eu/resource/tc55-7ysv.json?$limit=80000")
 data_funding <- fromJSON(rawToChar(res$content))
