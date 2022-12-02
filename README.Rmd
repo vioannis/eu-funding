@@ -1,0 +1,100 @@
+---
+title: "README"
+output: html_document
+date: "2022-12-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list = ls())
+options(scipen=999)
+require("httr")
+require("jsonlite")
+require("RSocrata")
+require("httr")
+require("jsonlite")
+require(ggplot2)
+require(dplyr)
+require(RSocrata)
+require(tidyverse)
+require(sf)
+require(rnaturalearth)
+require(rnaturalearthdata)
+require(eurostat)
+library(ggplot2)
+library(geometry)
+###### get funding data from EU commission
+res <- GET("https://cohesiondata.ec.europa.eu/resource/tc55-7ysv.json?$limit=80000")
+data_funding <- fromJSON(rawToChar(res$content))
+data_funding$modelled_annual_eu_payments <- as.numeric(data_funding$modelled_annual_eu_payments)/1000000000
+###### aggregate 
+funding_average <- aggregate(modelled_annual_eu_payments~country,data_funding,sum)
+
+period_average <- aggregate(modelled_annual_eu_payments~programming_period,data_funding,sum)
+
+funding_average_period <- aggregate(modelled_annual_eu_payments~country+programming_period,data_funding,sum)
+
+```
+
+##Plots
+
+PLOTS:
+
+```{r pressure, echo=FALSE,message=FALSE,warning=FALSE}
+
+ggplot(funding_average, aes(reorder(country,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
+  coord_flip() +
+  geom_bar(stat="identity", width=.90) + 
+  xlab("") + # Set axis labels
+  ylab("") + 
+  ggtitle("total funding by country since 1989 in billion euro") + 
+  theme_minimal()
+
+ggplot(period_average, aes(reorder(programming_period,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
+  coord_flip() +
+  geom_bar(stat="identity", width=.90) + 
+  xlab("") + # Set axis labels
+  ylab("") + 
+  ggtitle("total funding by programming period in billion euro") + 
+  theme_minimal()
+
+ggplot(funding_average_period[funding_average_period$programming_period=="1989-1993",], aes(reorder(country,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
+  coord_flip() +
+  geom_bar(stat="identity", width=.90) + 
+  xlab("") + # Set axis labels
+  ylab("") + 
+  ggtitle("total funding by country 1989-1993 in billion euro") + 
+  theme_minimal()
+
+
+ggplot(funding_average_period[funding_average_period$programming_period=="2014-2020",], aes(reorder(country,-modelled_annual_eu_payments),modelled_annual_eu_payments )) +
+  coord_flip() +
+  geom_bar(stat="identity", width=.90) + 
+  xlab("") + # Set axis labels
+  ylab("") + 
+  ggtitle("total funding by country since 2014-2020 in billion euro") + 
+  theme_minimal()
+
+
+# Download geospatial data from GISCO
+data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "0", year = 2021)
+
+# merge with attribute data with geodata
+data <- merge(data_geo,funding_average, by.x="NUTS_ID",by.y="country")
+data$cat <- cut_to_classes(data$modelled_annual_eu_payments)
+
+## Joining, by = "geo"
+ggplot(data = data) +
+  geom_sf(aes(fill = cat), size = 0.1) +
+  scale_fill_brewer(palette = "Oranges") +
+  guides(fill = guide_legend(reverse = TRUE, title = "billion euro")) +
+  labs(
+    title = "Total fiscal transfers",
+    caption = ""
+  ) +
+  theme_light() +
+  theme(legend.position = c(.8, .8)) +
+  coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
+
+```
+
