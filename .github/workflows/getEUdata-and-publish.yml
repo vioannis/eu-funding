@@ -32,6 +32,7 @@ jobs:
       # Load repo
       - uses: actions/checkout@v3
       - run: git version
+      - run: git pull
       - run: rm -rf README.md
       # Set-up R
       - name: Install packages
