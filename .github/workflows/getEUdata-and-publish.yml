@@ -37,6 +37,7 @@ jobs:
         run: |
           R -e 'install.packages("rvest")'
           Rscript -e 'install.packages("rmarkdown")'
+          Rscript -e 'install.packages("eurostat")'
       # Run R script 
       # chmod: ubuntu command, makes script executable
       #- name: Run script to knit rmd file
