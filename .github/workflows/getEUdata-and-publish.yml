@@ -57,8 +57,8 @@ jobs:
           git config --global --add safe.directory /__w/eu-funding/eu-funding
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add data/*
-          git commit -am "add data"
-          git push 
+          git add figure README.md
+          git commit -m "Update README.md via GH Actions"
+          git push
 
       
