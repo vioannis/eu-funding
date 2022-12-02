@@ -8,21 +8,18 @@ date: "2022-12-02"
 knitr::opts_chunk$set(echo = TRUE)
 rm(list = ls())
 options(scipen=999)
-require("httr")
-require("jsonlite")
-require("RSocrata")
-require("httr")
-require("jsonlite")
-require(ggplot2)
-require(dplyr)
-require(RSocrata)
-require(tidyverse)
-require(sf)
-require(rnaturalearth)
-require(rnaturalearthdata)
-require(eurostat)
-library(ggplot2)
-library(geometry)
+
+library("httr")
+library("RSocrata")
+library("jsonlite")
+library("ggplot2")
+library("dplyr")
+library("RSocrata")
+library("tidyverse")
+#library("sf")
+library("eurostat")
+library("geometry")
+
 ###### get funding data from EU commission
 res <- GET("https://cohesiondata.ec.europa.eu/resource/tc55-7ysv.json?$limit=80000")
 data_funding <- fromJSON(rawToChar(res$content))
@@ -93,7 +90,7 @@ ggplot(data = data) +
     caption = ""
   ) +
   theme_light() +
-  theme(legend.position = c(.8, .8)) +
+  theme() +
   coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
 
 ```
