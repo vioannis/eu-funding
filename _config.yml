@@ -1,0 +1,14 @@
+title: EU funding data Jekyll site using GitLab Pages
+#email: your-email@domain.com
+description: >- # this means to ignore newlines until "baseurl:"
+    On this page data on the distribution of recent EU funding is compared.
+#baseurl: "/jekyll" # the subpath of your site, e.g. /blog
+#url: "/" # the base hostname & protocol for your site, e.g. http://example.com
+#twitter_username: jekyllrb
+#github_username:  jekyll
+#gitlab_username:  pages
+
+# Build settings
+theme: cayman
+#plugins:
+#  - jekyll-feed
