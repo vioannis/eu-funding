@@ -2,9 +2,7 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+  # Runs when workflow "getEUdata-and-publish" is completed
   workflow_run:
     workflows: [getEUdata-and-publish]
     types:
