@@ -36,7 +36,6 @@ jobs:
         with:
           source: ./
           destination: ./_site
-          theme: Cayman
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 
