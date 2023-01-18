@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   
 #Modifies default permission granted to GITHUB_TOKEN (Not fully sure if and what needed though)  
-#permissions:
+permissions:
   contents: read/write
   issues: write
 
