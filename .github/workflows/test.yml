@@ -8,10 +8,10 @@ on:
   
 #Modifies default permission granted to GITHUB_TOKEN (Not fully sure if and what needed though)  
 permissions:
-  contents: read|write
-  deployments: read|write
-  issues: read|write
-  packages: read|write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
